@@ -67,7 +67,7 @@ Blueprints of the api of the game:
 
 **Pages**
 
-Blueprints of the pages on frontend. We will store the static and templates here for it to be self-contained as a front-end only folder.
+Blueprints of the pages on frontend.  Necessary files are stored in static and templates folders for it to be self-contained.
 
 **Resources**
 
