@@ -21,6 +21,72 @@ The following will be displayed on screen:
  
  After testing, Press CTRL+C on Anaconda Prompt to terminate the server, exit to terminate the prompt.
  
+ Unfortunately, the app does not run on Vocareum.
+
+## Brief description of the software
+Minesweeper is a populate game that was delivered together with the Windows operating system.  
+This project recreates the core feature of the game, with a new intelligent feature to help player
+play the game.  This feature uses the same info available to the player, and perform analysis and deductions
+to help determine location of mines.
+
+## How to use the software
+See the steps at top of the readme file on how to start and run the software.  You will see this page:
+![index.html page](/index.png)
+
+Select your assistant for the game:
+- Single flag: you can plant/clear flag on un-exposed slates to indicate that you think it has a mine.
+- Dual flag: you can plant/clear flag on un-exposed slates to indicate that you think it has a mine.
+You can also plant/clear question mark on a slate you are analysing.
+- Intelligent: In Intelligent mode, the computer will perform the analysis and plant flag (called Confirm flag) on 
+slates that certainly has mines.  You can only plant/clear question mark (called Proposed flag) on un-exposed slates.
+
+After you selected your preferred assistant, you can click one of the three game buttons to begin the game.  
+Each game corresponds to a specific canvas size and number of mines to be planted on it.
+
+![game.html page](/game.png)
+
+You start the game by left-clicking on any un-exposed slates.  When you left-click the slate, the slate becomes exposed.
+- If this slate has a mine, all the mines in the canvas are exploded, and you lose the game.
+- If this slate has no mine, it reveals a number from 0 to 8, which indicates the number of mines hidden in the 3, 5, 
+or 8 neighboring slates.  This is called **intelligence**.
+
+The goal of the game is to left-click and thus expose all the slates that have no mines.  The player can left-click on
+any slate for all modes of the game.
+
+The play can right-click an un-exposed slate to cycle the flag through all valid flags for the game mode.
+
+Under the Intelligent mode of the game, the computer identifies and flags all the slates that, deduced from the exposed 
+intelligence, are certain to have mines.
+
+Under the Intelligent mode of the game, a player plants Proposed flags, which is equivalent to asking the question as to
+"what if these slates have mines."  The computer will then identify slates that must have been mined or safe, and 
+will plant Implied flags accordingly.  From these flags, the computer further recomputes the implied intellicence, 
+checks that against the exposed intelligence, and high-light any intelligence that are violated.  When intelligence are
+violated, it means the Proposed flags are incorrect.  If the violation is caused by a single Proposed flag, the player 
+can proceed to left-click to open the slate with the Proposed flag.
+
+
+## Design of the software
+**Software specifications**
+The core of the application is made up of two Classes:
+
+**Canvas**: Each game is played on a Canvas.  A canvas is a grid of width by height slates.  It also has a number that indicates
+how many of those slates have a hidden mine, that if clicked open, will have the player lose the game.
+
+**Slate**: Each instance of a Slate represents a square on the Canvas.  A slate has two statuses: 
+- exposed: which is initialised to false on instantiation.  It means the slate is not exposed.  When player left-clicks on a 
+slate, it become un-exposed.
+- mined: this is initialised to false on instantiation, and then subsequently a specific number of slates and randomly selected
+to have this attribute set to true.  If the player left-clicks on a slate where mined is true, the game ends and the player lose.
+
+**How to verify the authenticity of the Intelligent playing mode**
+
+
+
+
+ 
+ 
+ 
 **Api**
 
 Blueprints of the api of the game:
