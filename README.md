@@ -81,6 +81,7 @@ checks that against the exposed intelligence, and high-light any intelligence th
 are incorrect.  If the violation is caused by a single Proposed flag, the player  can proceed to left-click to open the slate with the Proposed flag.
 
 Example of a violated intelligence and it's high-lighting:
+
 ![Violated intelligence](/VI.PNG)
 
 
