@@ -38,9 +38,9 @@ Blueprints of the api of the game:
 <table>
 <tr><th>API</th><th>METHODS</th><th>Req.body</th><th>Res.body</th><th>Direct class and methods</th>
 </tr>
-<tr><td>/game</td><td>POST</td><td>{level: string,<br> assist:string}</td><td rowspan=2>{grid:[],<br> width: int,<br> height: int,<br> assist: int,<br> noOfFlags:int,<br> NoOfMines: int,<br> discovered_mines: int,<br> hasWon: bool,<br> hasLost: bool}</td><td>Canvas.initGame()</td>
+<tr><td>/game</td><td>POST</td><td>{level: string,<br> assist:string}</td><td rowspan=2>{grid:[],<br> width: int,<br> height: int,<br> assist: string,<br> noOfFlags:int,<br> NoOfMines: int,<br> discovered_mines: int,<br> hasWon: bool,<br> hasLost: bool}</td><td>game.gen_new_game()</td>
 </tr>
-<tr><td>/update</td><td>POST</td><td>{x: int,<br> y:int,<br> action:string}</td><td>Canvas.update()</td>
+<tr><td>/update</td><td>POST</td><td>{x: int,<br> y:int,<br> action_type:string}</td><td>if action_type == 'flag':<br>return game.toggle_flag(gid, cell)<br>else:<br>return game.open(gid, cell)</td>
 </tr>
 </table>
 
