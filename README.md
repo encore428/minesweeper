@@ -71,15 +71,17 @@ selected game assistance mode.
 <tr><td><img src="./sFlag.PNG"></td><td>Implied safe</td><td>base on planted Proposed flag, this slate must be safe</td><td></td><td></td><td>auto</td></tr>
 </table>
 
-Under the Intelligent mode of the game, the computer identifies and flags all the slates that, deduced from the exposed 
-intelligence, are certain to have mines.
+**Intelligent assistant**
 
-Under the Intelligent mode of the game, a player plants Proposed flags, which is equivalent to asking the question as to
-"what if these slates have mines."  The computer will then identify slates that must have been mined or safe, and 
-will plant Implied flags accordingly.  From these flags, the computer further recomputes the implied intellicence, 
-checks that against the exposed intelligence, and high-light any intelligence that are violated.  When intelligence are
-violated, it means the Proposed flags are incorrect.  If the violation is caused by a single Proposed flag, the player 
-can proceed to left-click to open the slate with the Proposed flag.
+With intelligent assistant, the computer identifies and flags all the slates that, deduced from the exposed intelligence, are certain to have mines.
+
+A player thus plants only Proposed flags, which is equivalent to asking the question as to "what if these slates have mines."  The computer will then identify 
+slates that must have been mined or safe, and will plant Implied flags accordingly.  From these flags, the computer further recomputes the implied intellicence, 
+checks that against the exposed intelligence, and high-light any intelligence that are violated.  When intelligence are violated, it means the Proposed flags
+are incorrect.  If the violation is caused by a single Proposed flag, the player  can proceed to left-click to open the slate with the Proposed flag.
+
+Example of a violated intelligence and it's high-lighting:
+![Violated intelligence](/VI.PNG)
 
 
 ## Design of the software
