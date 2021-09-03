@@ -62,13 +62,13 @@ assistance selected, the player can left-click on any slate.
 The player can right-click any un-exposed slate to cycle the flag through all valid flags applicable to the
 selected game assistance mode.
 <table>
-<tr><th column span=2>Flag</th><th row span=3>Applicable to</th></tr>
-<tr><th>picture</th><th>name</th><th>Single Flag</th><th>Dual flag</th><th>Intelligent</th></tr>
-<tr><td><img src="./cFlag.PNG"></td><td>nil</td><td>yes</td><td>yes</td><td>yes</td></tr>
-<tr><td><img src="./cFlag.PNG"></td><td>Confirmed</td><td>yes</td><td>yes</td><td>yes</td></tr>
-<tr><td><img src="./pFlag.PNG"></td><td>Proposed</td><td></td><td>yes</td><td>yes</td></tr>
-<tr><td><img src="./mFlag.PNG"></td><td>Implied mined</td><td></td><td></td><td>yes</td></tr>
-<tr><td><img src="./sFlag.PNG"></td><td>Implied safe</td><td></td><td></td><td>yes</td></tr>
+<tr><th colspan=3>Flag</th><th colspan=3>Applicable to</th></tr>
+   <tr><th>picture</th><th>name</th><th>meaning</th><th>Single Flag</th><th>Dual flag</th><th>Intelligent</th></tr>
+   <tr><td><img src="./nFlag.PNG"></td><td>nil</td><td>No flag planted</td><td>yes</td><td>yes</td><td>yes</td></tr>
+<tr><td><img src="./cFlag.PNG"></td><td>Confirmed</td><td>slate is believed to be mined</td><td>yes</td><td>yes</td><td>yes</td></tr>
+<tr><td><img src="./pFlag.PNG"></td><td>Proposed</td><td>player is asking what if this is mined</td><td></td><td>yes</td><td>yes</td></tr>
+<tr><td><img src="./mFlag.PNG"></td><td>Implied mined</td><td>base on planted Proposed flag, this slate must be mined</td><td></td><td></td><td>yes</td></tr>
+<tr><td><img src="./sFlag.PNG"></td><td>Implied safe</td><td>base on planted Proposed flag, this slate must be safe</td><td></td><td></td><td>yes</td></tr>
 </table>
 
 Under the Intelligent mode of the game, the computer identifies and flags all the slates that, deduced from the exposed 
