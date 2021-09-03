@@ -63,7 +63,9 @@ The player can right-click any un-exposed slate to cycle the flag through all va
 selected game assistance mode.
 <table>
 <tr><th>Flag</th><th>Name</th></tr>
-<tr><td>![Confirmed flag](/cFlag.png)</td><td>Confirmed</tD></tr>
+<tr><td>
+![Confirmed flag](/cFlag.png)
+</td><td>Confirmed</tD></tr>
 </table>
 
 Under the Intelligent mode of the game, the computer identifies and flags all the slates that, deduced from the exposed 
