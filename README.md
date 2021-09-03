@@ -26,19 +26,19 @@ The following will be displayed on screen:
 ## Brief description of the software
 Minesweeper is a popular game that was delivered together with the Windows operating system.  
 
-This project recreates the core feature of the game, with an additonal function to automate the analysis 
+This project recreates the core feature of the game.  My contribution is the function to automate the analysis 
 of the game.  This feature uses the same info available to the player, and performs analysis to:
 
-1 Identify slates that must be mined, and plant confirm flags on them.
+1 Identify slates that must be mined, and plant **Confirmed flags** on them.
 
-1 In response to player's planting of proposed flags, which is equivalent to asking what if this slate is mined, 
-analyse and idenfity and plant Implied flags on slates that must be mined or safe.
+1 In response to player's planting of **Proposed flags**, which is equivalent to asking what if this slate is mined, 
+analyse and idenfity and plant **Implied flags** on slates that must be **Mined** or **Safe**.
 
 1 From the resulting flags planted, inspect each exposed slate, and high-light those when the derived number of
-neighborhood mines cannot tally with the revealed number.  This is called violated intelligence.
+neighborhood mines cannot tally with the revealed number.  This is called **Violated Intelligence**.
 
-1 When there is violated intelligence, it implies the Proposed flags have been incorrectly planted.  If only
-one Proposed flag has planted, that slate can be opened safely.
+1 When there is **Violated Intelligence**, it implies the **Proposed flags** have been incorrectly planted.  If only
+one **Proposed flag** is involved, that slate can be opened safely.
 
 ## How to use the software
 See the steps at the top of this readme file on how to start and run the software.
@@ -47,12 +47,12 @@ You will see this page:
 ![index.html page](/index.png)
 
 Select your assistant for the game:
-- Single flag: you can plant/clear flag on un-exposed slates to indicate that you think it has a mine.
-- Dual flag: you can plant/clear flag on un-exposed slates to indicate that you think it has a mine.
-You can also plant/clear question mark on a slate you are analysing.
-- Intelligent: the computer will perform the analysis and plant flag (called Confirmed flag) on 
-slates that certainly have mines.  You can only plant/clear question mark (called Proposed flag) on un-exposed slates, 
-and the computer proceeds to perform further analysis.
+- **Single flag**: Player plants/clears flag on un-exposed slates to indicate that you think it has a mine.
+- **Dual flag**: Player plants/clears flag on un-exposed slates to indicate that he thinks it has a mine.
+Player can also plant/clear **Proposed flag** on a slate being analysed.
+- **Intelligent**: The computer performs the analysis and plant **Confirmed flag** on slates that certainly 
+have mines.  Player only plants/clears **Proposed flag** on un-exposed slates, and the computer proceeds 
+to perform further analysis.
 
 After you selected your preferred assistant, you can click one of the three game buttons to begin the game.  
 Each game (Beginner, Intermediate, Expert) corresponds to a specific canvas size and number of mines to be planted on it.  
@@ -62,11 +62,11 @@ On clicking one of the game buttons, a game canvas of the selected size is displ
 
 **Left click to expose a slate**
 
-You start the game by left-clicking on any un-exposed slates.  When you left-click the slate, the slate becomes exposed.
-- If this slate has a mine, all the mines in the canvas explode, and you lose the game.
+Player starts the game by left-clicking on any un-exposed slates.  When player left-clicks the slate, the slate becomes exposed.
+- If this slate has a mine, all the mines in the canvas explode, and player loses the game.
 - If this slate has no mine, it reveals a number from 0 to 8, which indicates the number of mines hidden in its 
-neighboring slates.  This is called **intelligence** of that slate.  When intelligence is 0, it is simply left blank instead of 
-showing the zero digit.
+neighboring slates.  This is called **intelligence** of that slate.  When **intelligence** is 0, it is simply 
+left blank instead of showing the zero digit.
 
 The goal of the game is to left-click and thus expose all the slates that have no mines.  Regardless of the game 
 assistance selected, the player can left-click on any slate.
@@ -87,14 +87,17 @@ selected game assistance mode.
 
 **Intelligent assistant**
 
-With intelligent assistant, the computer identifies and flags all the slates that, deduced from the exposed intelligence, are certain to have mines.
+With intelligent assistant, the computer identifies and flags all the slates that, deduced from the exposed intelligence,
+are certain to have mines.
 
-A player thus plants only Proposed flags, which is equivalent to asking the question as to "what if these slates have mines."  The computer will then identify 
-slates that must have been mined or safe, and will plant Implied flags accordingly.  From these flags, the computer further recomputes the implied intellicence, 
-checks that against the exposed intelligence, and high-light any intelligence that are violated.  When intelligence are violated, it means the Proposed flags
-are incorrect.  If the violation is caused by a single Proposed flag, the player  can proceed to left-click to open the slate with the Proposed flag.
+A player thus plants only **Proposed flags**, which is equivalent to asking the question as to "what if these 
+slates have mines."  The computer will then identify slates that must have been mined or safe, and will plant 
+**Implied flags** accordingly.  From these flags, the computer further recomputes the implied **intellicence**, 
+checks that against the exposed **intelligence**, and high-light any **intelligence** that are violated.  
+When intelligence are violated, it means the **Proposed flags** are incorrect.  If the violation is caused by a 
+single **Proposed flag**, the player can proceed to left-click to open the slate with the **Proposed flag**.
 
-Example of a violated intelligence and it's high-lighting:
+Example of a **Violated Intelligence** and it's high-lighting:
 
 ![Violated intelligence](/VI.PNG)
 
@@ -108,10 +111,11 @@ The core of the application is made up of two Classes:
 how many of those slates have a hidden mine, that if clicked open, will have the player lose the game.
 
 **Slate**: Each instance of a Slate represents a square on the Canvas.  A slate has two statuses: 
-- **exposed**: which is initialised to false on instantiation.  It means the slate is not exposed.  When player left-clicks on a 
-slate, it become un-exposed.
-- **mined**: this is initialised to false on instantiation, and then subsequently a specific number of slates are randomly selected
-to have this attribute set to true.  If the player left-clicks on a slate where mined is true, the game ends and the player lose.
+- **exposed**: which is initialised to false on instantiation.  It means the slate is not exposed.  When player left-clicks
+on a slate, it become un-exposed.
+- **mined**: this is initialised to false on instantiation, and then subsequently a specific number of slates are randomly 
+selected to have this attribute set to true.  If the player left-clicks on a slate where mined is true, the game ends and 
+the player loses.
 - **intel**: as mines are planted on selected slates, the mined slate informs its neighbor that it has a bomb.  Each slate 
 keeps track of the number of times it is informed, and this is the intel of the slate.  This number is fixed once the mines 
 planting is completed.
@@ -176,6 +180,9 @@ walks in the neighborhood network to arrive at another slate to actually plant t
         for each_slate in curSlate.neighborhood:
             each_slate.intelInc()
 ```
+Note that the neighbor notified of addition of mines in its neighborhood, does not know which of its neighbor actually 
+is informing it.
+
  
 **Api**
 
@@ -220,6 +227,11 @@ Blueprints of the api of the game:
 **UML diagram**
 
 ![uml diagram](/UML.png)
+
+Note that the is a `idx` attribute for Slate class.  This attribute uniquely identifies the slate instance.  It does not
+participate in the core logic of the Slate class methods.  It is here only for printing tracing messages for 
+debugging purpose.
+
 
 **Pages**
 
