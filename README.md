@@ -64,7 +64,7 @@ selected game assistance mode.
 <table>
 <tr><th>Flag</th><th>Name</th></tr>
 <tr><td>
-<img src="/cFlag.png">
+<img src="cFlag.png">
 </td><td>Confirmed</tD></tr>
 </table>
 
