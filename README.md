@@ -27,8 +27,8 @@ The following will be displayed on screen:
 
 Blueprints of the api of the game:
 
-- init game
-- update game
+- init game: to start a new game.
+- update game: as initiated by player tapping on a slate, the action and location of the slate is sent to back-end, back-end performs processing, and return a copy of updated canvas which is then rendered on the browser.
 
 **Minesweeper**
 
