@@ -40,7 +40,12 @@ Blueprints of the api of the game:
 </tr>
 <tr><td>/game</td><td>POST</td><td>{level: string,<br> assist:string}</td><td rowspan=2>{grid:[],<br> width: int,<br> height: int,<br> assist: string,<br> noOfFlags:int,<br> NoOfMines: int,<br> discovered_mines: int,<br> hasWon: bool,<br> hasLost: bool}</td><td>game.gen_new_game()</td>
 </tr>
-<tr><td>/update</td><td>POST</td><td>{x: int,<br> y:int,<br> action_type:string}</td><td>if action_type == 'flag':<br>&nbsp&nbsp&nbsp&nbspgame.toggle_flag(gid, cell)<br>else:<br>&nbsp&nbsp&nbsp&nbspgame.open(gid, cell)</td>
+<tr><td>/update</td><td>POST</td><td>{x: int,<br> y:int,<br> action_type:string}</td><td>
+```
+if action_type == 'flag':
+&nbsp&nbsp&nbsp&nbspgame.toggle_flag(gid, cell)<br>else:<br>&nbsp&nbsp&nbsp&nbspgame.open(gid, cell)
+```
+</td>
 </tr>
 </table>
 
