@@ -35,6 +35,15 @@ Blueprints of the api of the game:
 
 **External game API**
 
+<table>
+<tr><th>API</th><th>METHODS</th><th>Req.body</th><th>Res.body</th><th>Direct class and methods</th>
+</tr>
+<tr><td>/game</td><td>POST</td><td>{level: string, assist:string}</td><td rowspan=2>{grid:[], width: int, height: int, assist: int, noOfFlags:int, NoOfMines: int, discovered_mines: int, hasWon: bool, hasLost: bool}</td><td>Canvas.initGame()</td>
+</tr>
+<tr><td>/update</td><td>POST</td><td>{x: int, y:int, action:string}</td><td>Canvas.update()</td>
+</tr>
+</table>
+
 ![external api](/external-api-design.jpg)
 
 **UML diagram**
