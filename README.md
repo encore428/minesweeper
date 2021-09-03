@@ -99,6 +99,75 @@ slate, it become un-exposed.
 to have this attribute set to true.  If the player left-clicks on a slate where mined is true, the game ends and the player lose.
 
 **How to verify the authenticity of the Intelligent playing mode**
+When the game is played, it does help to identify mines, and automactically flags and open correct mines. How can one ascertain
+if this is indeed the result of correct algorithm and analysis, or could it be cheating?  To ascertain that the program logic 
+that automates the playing of the game relies only on the same info as a player does, the `__private` annotation technique is 
+used for the most important attributes of the Slate class:
+```
+class Slate:
+    def __init__(self, idx, tools):
+        self.__mined = False    # True if slate has a mine
+        self.__exposed = False  # True if slate has been uncovered
+        self.__intel = 0  # number of mines in the neighborhood
+```
+ To find out the intelligence of, or determine if a slate is minded, one must go through the property methods:
+ ```
+    @property
+    def mined(self):
+        if self.exposed:
+            return self.__mined
+
+    @property
+    def intel(self):
+        if self.exposed:
+            return self.__intel
+```
+Here, the value is returned only if the slate is exposed.  As such, no one from outside of Slate class can obtained the 
+value without first opening the slate.  To open a slate, one can only do it via the Slate method:
+```python
+    ## For unexposed slates, player can tap to crack it open.  Each cracking tap is handled by this method
+    ## the method returns true if a mine has gone off
+    def crack(self):
+        ...	
+        # cracking open a Slate with confirmed flag is not allowed
+        if flag_symbols[self.flag][1] == 'confirmed':
+            print(f"    slate[{self.__idx}] has confirmed flag, cracking is not allowed")
+            return False
+        pass
+        # if the Slate has a flag, clear it first
+        if self.flag != 0:
+            self.flagClear()
+        # now expose this Slate
+        self.exposed = True
+        # if this Slate has a mine, it expldes and game is over
+        if self.mined:
+            return True
+
+```
+
+Finally, by inspecting the proper access to `__mined` and `__intel` within the Slate class, one can be assured that 
+any analysis are based on valid known facts form the Canvas.
+
+Another mechanism to prevent the location of mined slates from outside of Slate class is that, when a request is made 
+from Canvas to plant a mine on a designated slate, the Slate method will perform random walks in the neighborhood network
+to arrive at another slate to actually plant the mine.
+```python
+    def plant_mine(self, cap):
+        sub_neighbor_steps = random.randint(0,int(math.sqrt(cap))) + 3
+        curSlate = self
+        for i in range(sub_neighbor_steps):
+            curSlate = curSlate.neighborhood[random.randint(0,len(curSlate.neighborhood)-1)]
+        while curSlate.__mined:
+            curSlate = curSlate.neighborhood[random.randint(0,len(curSlate.neighborhood)-1)]
+        curSlate.__mined = True
+        for each_slate in curSlate.neighborhood:
+            each_slate.intelInc()
+
+
+```
+
+
+
 
 
 
