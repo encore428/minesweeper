@@ -43,19 +43,19 @@ Blueprints of the api of the game:
    &nbspassist: string<br>
    }</td>
    <td rowspan=2>
-      {grid:[],<br>
+      {player_board:[],<br>
       &nbspwidth: int,<br>
       &nbspheight: int,<br>
       &nbspassist: string,<br>
-      &nbspnoOfFlags:int,<br>
-      &nbspNoOfMines: int,<br>
+      &nbspno_of_flags:int,<br>
+      &nbspinitial_mines: int,<br>
       &nbspdiscovered_mines: int,<br>
-      &nbsphasWon: bool,<br>
-      &nbsphasLost: bool<br>
+      &nbsphas_won: bool,<br>
+      &nbsphas_lost: bool<br>
       }</td><td>game.gen_new_game()</td>
 </tr>
-<tr><td>/update</td><td>POST</td><td>{cell: int,<br>&nbspaction_type:string<br>}</td>
-   <td>if action_type == 'flag':<br>
+<tr><td>/update</td><td>POST</td><td>{cell: int,<br>&nbsptype:string<br>}</td>
+   <td>if type == 'flag':<br>
       &nbsp&nbsp&nbsp&nbspgame.toggle_flag(gid, cell)<br>else:<br>&nbsp&nbsp&nbsp&nbspgame.open(gid, cell)
    </td>
 </tr>
