@@ -47,6 +47,7 @@ On clicking one of the game buttons, a game canvas of the selected size is displ
 ![game.html page](/game.png)
 
 **Left click to expose a slate**
+
 You start the game by left-clicking on any un-exposed slates.  When you left-click the slate, the slate becomes exposed.
 - If this slate has a mine, all the mines in the canvas are exploded, and you lose the game.
 - If this slate has no mine, it reveals a number from 0 to 8, which indicates the number of mines hidden in its 3, 5, 
@@ -57,6 +58,7 @@ The goal of the game is to left-click and thus expose all the slates that have n
 assistnace selected, the player can left-click on any slate.
 
 **Right click to plant a flag**
+
 The player can right-click an un-exposed slate to cycle the flag through all valid flags for the game mode.
 
 Under the Intelligent mode of the game, the computer identifies and flags all the slates that, deduced from the exposed 
