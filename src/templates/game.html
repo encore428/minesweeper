@@ -1,0 +1,52 @@
+<!doctype html>
+<title>Minesweeper</title>
+
+<link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<body>
+    <button class="mb-3">
+        <a href="/">
+            Back to home
+        </a>
+    </button>
+    <h3>Assistant: {{tools}}</h3>
+
+    <div>
+        <div class="container d-inline-block">
+            <div class="d-inline-block">
+                <div class="d-flex justify-between panel-container">
+                    <div class="panel" id="flag-count">{{game.initial_mines}}</div>
+                    <div class="game-button">
+                        <span class="icon material-icons">
+                            sentiment_satisfied_alt
+                        </span>
+                    </div>
+                    <div class="panel" id="timer">0</div>
+                </div>
+
+                <div id="minesweeper">
+                    {% set data = game.player_board %}
+                    {% for rowIndex in range(0, data|length, width) %}
+
+                    <div class="row">
+                        {% for columnIndex in range(width) %}
+
+                        {% set dataIndex = rowIndex + columnIndex %}
+                        <div class="cell d-flex text-center justify-center" data-cell={{dataIndex}}
+                            data-type={{data[dataIndex]}}>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="{{url_for('static', filename='js/minesweeper.js')}}"></script>
+<script>
+    minesweeper.createEventHandler()
+</script>

@@ -1,0 +1,107 @@
+:root {
+  --border: #b2b2b2;
+  --background: #c3c3c3;
+}
+
+body {
+  margin: 50px 10px;
+  text-align: center;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.d-inline-block {
+  display: inline-block;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.row {
+  display: flex;
+}
+
+.container {
+  padding: 20px;
+  background: var(--background);
+}
+
+.mb-3 {
+  margin-bottom: 20px;
+}
+
+.panel-container {
+  padding: 5px;
+  border: 4px inset var(--border);
+  margin-bottom: 10px;
+}
+
+.panel {
+  height: 40px;
+  border: 2px solid var(--border);
+  background-color: black;
+  color: #e23428;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  padding: 5px 10px;
+  min-width: 45px;
+}
+
+.game-button {
+  border: 3px outset var(--border);
+}
+
+.game-button:active {
+  border: 3px inset var(--border);
+}
+
+.game-button .icon {
+  font-size: 50px;
+  color: yellow;
+  cursor: pointer;
+  padding: 2px;
+}
+
+.cell {
+  height: 25px;
+  width: 25px;
+  background: var(--background);
+  border: 3px outset var(--border);
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.cell:hover {
+  cursor: pointer;
+}
+
+.cell.open,
+.cell:active {
+  border: 3px inset var(--border);
+}
+
+.cell.open {
+  background-color: #d4d4d4;
+}
+.cell.violated {
+  background-color: #e23428;
+}
+
+#minesweeper {
+  display: inline-block;
+  border: 4px inset #ccc;
+}

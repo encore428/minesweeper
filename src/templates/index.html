@@ -1,0 +1,42 @@
+<!doctype html>
+<title>Minesweeper</title>
+
+<link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}" />
+
+<body>
+    <h1>Choose your assistant</h1>
+    <select id="gameAssist" value="0">
+        <option value="0">Single flag</option>
+        <option value="1">Dual flag</option>
+        <option value="2">Intelligent</option>
+    </select>            
+    <h1>Start your game</h1>
+    <div>
+        <div><strong><button name="beginner" class="button al0">Beginner</button></strong> 9x9 10 mines</div>
+        <div><strong><button name="intermediate" class="button al0">Intermediate</button></strong> 16x16 40 mines</div>
+        <div><strong><button name="expert" class="button al0">Expert</button></strong> 16x30 99 mines</div>
+    </div>
+    <br>
+</body>
+
+<script src="{{url_for('static', filename='js/minesweeper.js')}}"></script>
+<script>
+    let gameAssist = 0;
+    function seleHandler(event) {
+        event.preventDefault();
+        console.log(document.getElementById("gameAssist").value);
+		gameAssist = Number(document.getElementById("gameAssist").value);
+        const buttons = document.querySelectorAll('.button')
+        buttons.forEach(button => {
+            button.className = `button al${gameAssist}`;
+        });
+
+        console.log(`gameAssist changed to ${gameAssist}`)
+    }
+
+    const buttons = document.querySelectorAll('.button')
+    buttons.forEach(button => {
+        button.addEventListener('click', minesweeper.createNewGame)
+    });
+    document.getElementById('gameAssist').addEventListener('change', seleHandler);
+</script>
