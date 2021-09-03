@@ -1,12 +1,13 @@
-## Notes
+## To execute (on Windows)
 
-When Developing, always make sure to run on dev mode via environment variable `export FLASK_DEBUG=True`
+Open an Anaconda Prompt session, perform the following:
 
-`cd minesweeper`
-
-`source venv/Scripts/activate`
-
-`flask run` to run the app
+```
+git clone https://github.com/encore428/Python
+cd Python/minesweeper
+source venv/Scripts/activate
+flask run
+```
 
 ## Architecture
 
@@ -46,3 +47,7 @@ Blueprints of the pages on frontend. We will store the static and templates here
 [Modular Applications with Blueprints](https://flask.palletsprojects.com/en/2.0.x/blueprints/)
 
 [Flask realworld example app](https://github.com/gothinkster/flask-realworld-example-app)
+
+## Notes
+
+When Developing, always make sure to run on dev mode via environment variable `export FLASK_DEBUG=True`
