@@ -29,15 +29,15 @@ Minesweeper is a popular game that was delivered together with the Windows opera
 This project recreates the core feature of the game.  My contribution is the function to automate the analysis 
 of the game.  This feature uses the same info available to the player, and performs analysis to:
 
-1 Identify slates that must be mined, and plant **Confirmed flags** on them.
+1. Identify slates that must be mined, and plant **Confirmed flags** on them.
 
-1 In response to player's planting of **Proposed flags**, which is equivalent to asking what if this slate is mined, 
+1. In response to player's planting of **Proposed flags**, which is equivalent to asking what if this slate is mined, 
 analyse and idenfity and plant **Implied flags** on slates that must be **Mined** or **Safe**.
 
-1 From the resulting flags planted, inspect each exposed slate, and high-light those when the derived number of
+1. From the resulting flags planted, inspect each exposed slate, and high-light those when the derived number of
 neighborhood mines cannot tally with the revealed number.  This is called **Violated Intelligence**.
 
-1 When there is **Violated Intelligence**, it implies the **Proposed flags** have been incorrectly planted.  If only
+1. When there is **Violated Intelligence**, it implies the **Proposed flags** have been incorrectly planted.  If only
 one **Proposed flag** is involved, that slate can be opened safely.
 
 ## How to use the software
