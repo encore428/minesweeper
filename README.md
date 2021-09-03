@@ -61,8 +61,6 @@ Blueprints of the api of the game:
 </tr>
 </table>
 
-![external api](/external-api-design.jpg)
-
 **UML diagram**
 
 ![uml diagram](/uml.jpg)
