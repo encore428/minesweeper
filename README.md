@@ -5,10 +5,18 @@ Open an Anaconda Prompt session, perform the following:
 ```
 git clone https://github.com/encore428/minesweeper
 cd minesweeper
-source venv/Scripts/activate
+python -m venv virtenv
+virtenv\Scripts\activate
 flask run
 ```
 
+The following will be displayed on screen:
+```
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+ ```
+ 
 ## Architecture
 
 **Api**
