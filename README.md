@@ -49,17 +49,22 @@ On clicking one of the game buttons, a game canvas of the selected size is displ
 **Left click to expose a slate**
 
 You start the game by left-clicking on any un-exposed slates.  When you left-click the slate, the slate becomes exposed.
-- If this slate has a mine, all the mines in the canvas are exploded, and you lose the game.
-- If this slate has no mine, it reveals a number from 0 to 8, which indicates the number of mines hidden in its 3, 5, 
-or 8 neighboring slates.  This is called **intelligence**.  When intelligence is 0, it is simply left blank instead of 
+- If this slate has a mine, all the mines in the canvas explode, and you lose the game.
+- If this slate has no mine, it reveals a number from 0 to 8, which indicates the number of mines hidden in its 
+neighboring slates.  This is called **intelligence**.  When intelligence is 0, it is simply left blank instead of 
 showing the zero digit.
 
 The goal of the game is to left-click and thus expose all the slates that have no mines.  Regardless of the game 
-assistnace selected, the player can left-click on any slate.
+assistance selected, the player can left-click on any slate.
 
 **Right click to plant a flag**
 
-The player can right-click an un-exposed slate to cycle the flag through all valid flags for the game mode.
+The player can right-click any un-exposed slate to cycle the flag through all valid flags applicable to the
+selected game assistance mode.
+<table>
+<tr><th>Flag</th><th>Name</th></tr>
+<tr><td>![Confirmed flag](/cFlag.png)</td><td>Confirmed</tD></tr>
+</table>
 
 Under the Intelligent mode of the game, the computer identifies and flags all the slates that, deduced from the exposed 
 intelligence, are certain to have mines.
