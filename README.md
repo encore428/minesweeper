@@ -37,23 +37,27 @@ Select your assistant for the game:
 - Single flag: you can plant/clear flag on un-exposed slates to indicate that you think it has a mine.
 - Dual flag: you can plant/clear flag on un-exposed slates to indicate that you think it has a mine.
 You can also plant/clear question mark on a slate you are analysing.
-- Intelligent: In Intelligent mode, the computer will perform the analysis and plant flag (called Confirm flag) on 
-slates that certainly has mines.  You can only plant/clear question mark (called Proposed flag) on un-exposed slates.
+- Intelligent: the computer will perform the analysis and plant flag (called Confirm flag) on 
+slates that certainly have mines.  You can only plant/clear question mark (called Proposed flag) on un-exposed slates.
 
 After you selected your preferred assistant, you can click one of the three game buttons to begin the game.  
-Each game corresponds to a specific canvas size and number of mines to be planted on it.
+Each game (Beginner, Intermediate, Expert) corresponds to a specific canvas size and number of mines to be planted on it.  
+On clicking one of the game buttons, a game canvas of the selected size is displayed.
 
 ![game.html page](/game.png)
 
+**Left click to expose a slate**
 You start the game by left-clicking on any un-exposed slates.  When you left-click the slate, the slate becomes exposed.
 - If this slate has a mine, all the mines in the canvas are exploded, and you lose the game.
-- If this slate has no mine, it reveals a number from 0 to 8, which indicates the number of mines hidden in the 3, 5, 
-or 8 neighboring slates.  This is called **intelligence**.
+- If this slate has no mine, it reveals a number from 0 to 8, which indicates the number of mines hidden in its 3, 5, 
+or 8 neighboring slates.  This is called **intelligence**.  When intelligence is 0, it is simply left blank instead of 
+showing the zero digit.
 
-The goal of the game is to left-click and thus expose all the slates that have no mines.  The player can left-click on
-any slate for all modes of the game.
+The goal of the game is to left-click and thus expose all the slates that have no mines.  Regardless of the game 
+assistnace selected, the player can left-click on any slate.
 
-The play can right-click an un-exposed slate to cycle the flag through all valid flags for the game mode.
+**Right click to plant a flag**
+The player can right-click an un-exposed slate to cycle the flag through all valid flags for the game mode.
 
 Under the Intelligent mode of the game, the computer identifies and flags all the slates that, deduced from the exposed 
 intelligence, are certain to have mines.
