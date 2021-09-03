@@ -62,10 +62,9 @@ assistance selected, the player can left-click on any slate.
 The player can right-click any un-exposed slate to cycle the flag through all valid flags applicable to the
 selected game assistance mode.
 <table>
-<tr><th>Flag</th><th>Name</th></tr>
-<tr><td>
-<img src="./cFlag.PNG">
-</td><td>Confirmed</tD></tr>
+<tr><th column span="2">Flag</th><th row span="3">Applicable to</th></tr>
+<tr><th>picture</th><th>name</th><th>Single Flag</th><th>Dual flag</th><th>Intelligent</th></tr>
+<tr><td><img src="./cFlag.PNG"></td><td>Confirmed</td>yes</td><td>yes</td><td>yes</td></tr>
 </table>
 
 Under the Intelligent mode of the game, the computer identifies and flags all the slates that, deduced from the exposed 
