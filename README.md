@@ -63,7 +63,7 @@ Blueprints of the api of the game:
 
 **UML diagram**
 
-![uml diagram](/uml.jpg)
+![uml diagram](/UML.png)
 
 **Pages**
 
