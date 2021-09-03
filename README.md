@@ -47,16 +47,16 @@ You will see this page:
 ![index.html page](/index.png)
 
 Select your assistant for the game:
-- **Single flag**: Player plants/clears flag on un-exposed slates to indicate that you think it has a mine.
-- **Dual flag**: Player plants/clears flag on un-exposed slates to indicate that he thinks it has a mine.
+- **Single flag**: Player plants/clears flag on un-exposed slates to indicate that it has a mine.
+- **Dual flag**: Player plants/clears flag on un-exposed slates to indicate that it has a mine.
 Player can also plant/clear **Proposed flag** on a slate being analysed.
 - **Intelligent**: The computer performs the analysis and plant **Confirmed flag** on slates that certainly 
 have mines.  Player only plants/clears **Proposed flag** on un-exposed slates, and the computer proceeds 
 to perform further analysis.
 
-After you selected your preferred assistant, you can click one of the three game buttons to begin the game.  
-Each game (Beginner, Intermediate, Expert) corresponds to a specific canvas size and number of mines to be planted on it.  
-On clicking one of the game buttons, a game canvas of the selected size is displayed.
+After you selected your preferred assistant, you can click one of the three game buttons to begin the game.  Each game (Beginner, Intermediate, 
+Expert) corresponds to a specific canvas size and number of mines to be planted on it.  On clicking one of the game buttons, a game canvas of 
+the selected size is displayed.
 
 ![game.html page](/game.png)
 
@@ -69,12 +69,12 @@ neighboring slates.  This is called **intelligence** of that slate.  When **inte
 left blank instead of showing the zero digit.
 
 The goal of the game is to left-click and thus expose all the slates that have no mines.  Regardless of the game 
-assistance selected, the player can left-click on any slate.
+assistant selected, the player can left-click on any slate.
 
 **Right click to plant a flag**
 
 The player can right-click any un-exposed slate to cycle the flag through all valid flags applicable to the
-selected game assistance mode.
+selected game assistant mode.
 <table>
 <tr><th colspan=3>Flag</th><th colspan=3>Applicable to</th></tr>
    <tr><th>picture</th><th>name</th><th>meaning</th><th>Single Flag</th><th>Dual flag</th><th>Intelligent</th></tr>
@@ -87,10 +87,10 @@ selected game assistance mode.
 
 **Intelligent assistant**
 
-With intelligent assistant, the computer identifies and flags all the slates that, deduced from the exposed intelligence,
+With intelligent assistant, the computer identifies and plants **Confirmed flags** all the slates that, deduced from the exposed intelligence,
 are certain to have mines.
 
-A player thus plants only **Proposed flags**, which is equivalent to asking the question as to "what if these 
+The player plants only **Proposed flags**, which is equivalent to asking the question "what if these 
 slates have mines."  The computer will then identify slates that must have been mined or safe, and will plant 
 **Implied flags** accordingly.  From these flags, the computer further recomputes the implied **intellicence**, 
 checks that against the exposed **intelligence**, and high-light any **intelligence** that are violated.  
@@ -108,9 +108,9 @@ Example of a **Violated Intelligence** and it's high-lighting:
 The core of the application is made up of two Classes:
 
 **Canvas**: Each game is played on a Canvas.  A canvas is a grid of width by height slates.  It also has a number that indicates
-how many of those slates have a hidden mine, that if clicked open, will have the player lose the game.
+how many of those slates have hidden mines, that if clicked open, will have the player lose the game.
 
-**Slate**: Each instance of a Slate represents a square on the Canvas.  A slate has two statuses: 
+**Slate**: Each instance of a Slate represents a square on the Canvas.  A slate has these critical attributeswo statuses: 
 - **exposed**: which is initialised to false on instantiation.  It means the slate is not exposed.  When player left-clicks
 on a slate, it become un-exposed.
 - **mined**: this is initialised to false on instantiation, and then subsequently a specific number of slates are randomly 
@@ -122,12 +122,12 @@ planting is completed.
 
 **How to verify the authenticity of the Intelligent playing mode**
 
-When the game is played, intelligent mode helps to identify mines, and automactically flags and opens correct slates.  
+When the game is played, intelligent mode helps to identify mines, and automactically flags and opens appropriate slates.  
 How can one be sure that this is indeed the result of correct algorithm and analysis, and not intentional or accidental
 cheating?
 
 To ascertain that the program logic that automates the playing of the game relies only on the same info as a player does,
-the `__private` attribute technique is used for the most important attributes of the Slate class:
+the `__private` attribute technique is used for the the critical attributes of the Slate class:
 ```python
 class Slate:
     def __init__(self, idx, tools):
@@ -180,7 +180,7 @@ walks in the neighborhood network to arrive at another slate to actually plant t
         for each_slate in curSlate.neighborhood:
             each_slate.intelInc()
 ```
-Note that the neighbor notified of addition of mines in its neighborhood, does not know which of its neighbor actually 
+Note that the neighbor notified of addition of mines in its neighborhood, does not know which of its neighbors actually 
 is informing it.
 
  
