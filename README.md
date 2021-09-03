@@ -64,7 +64,7 @@ selected game assistance mode.
 <table>
 <tr><th column span="2">Flag</th><th row span="3">Applicable to</th></tr>
 <tr><th>picture</th><th>name</th><th>Single Flag</th><th>Dual flag</th><th>Intelligent</th></tr>
-<tr><td><img src="./cFlag.PNG"></td><td>Confirmed</td>yes</td><td>yes</td><td>yes</td></tr>
+<tr><td><img src="./cFlag.PNG"></td><td>Confirmed</td><td>yes</td><td>yes</td><td>yes</td></tr>
 </table>
 
 Under the Intelligent mode of the game, the computer identifies and flags all the slates that, deduced from the exposed 
