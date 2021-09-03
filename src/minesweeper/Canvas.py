@@ -21,21 +21,11 @@ class Canvas:
         self.__height = height
         self.__mines = mines
         self.__tools = tools          # 0=Confirm flag only, 1=has Proposed flag, 2=only Proposed flag
-        ######## tools refers to the game mode, its value affects the behaviour of some of the Slate methods.
-        ######## So I pass it into args of those methods.  Is there other ways to do it, for Slate to somehow
-        ######## have access to Canvas properties without explicit passing
-        ########
+        ######## tools  is a Canvas attribute. But is's value affects the behaviour of some of the 
+        ######## Slate methods.  It is therefore replicated to Slate class and present i nall Slate instances.
         self.__start = None       # game start date time stamp
         self.__slates = []
-        self.__queueProposed = [] # to keep track of Proposed flags for Assisted game mode
-        ######## queueProposed stores a list of proposed flags.  Planting of proposed flag is
-        ######## determined by methods in the Slate class. So when a proposed flag is planted or
-        ######## cleared, it is added or removed from this queue.
-        ######## I passed this attribute to the Slate method, and found it propagating into
-        ######## many methods.  So eventually I move the logic of add/remove of items back to
-        ######## canvas depending on the result of the Slate method calls.
-        ######## Is there other approach?
-        ########
+        self.__queueProposed = [] # to keep track of Proposed flags for Intelligent game mode.
 
         self.__hasWon = False # game is won when all safe slates are opened
         self.__hasLost = False # game is lost when a mine is opened
@@ -177,7 +167,10 @@ class Canvas:
                 if self.cFlagCount == self.mines:
                     print(f"game is finished, all mines flagged and all safe slates creaked open")
                 else:
-                    print(f"game is finished, all safe slates creaked open")
+                    print(f"game is finished, all safe slates creaked open, proceeding to plant confirm flag on all un-exposed slates.")
+                    for slate in self.slates:
+                        if not slate.exposed and slate.flag != 1:
+                            slate.flag = 1
                 self.__hasWon = True
             else:
                 if (self.tools == 2) and (self.cFlagCount == self.mines):
@@ -262,21 +255,25 @@ class Canvas:
                     for neighbor in slate.neighborhood:
                         if not neighbor.exposed and neighbor.flag != 1:
                             print(f"    Plant confirm flag on slate[{neighbor.idx}] because slate[{slate.idx}] has unexposed=intel")
-                            neighbor.flag = 1
+                            neighbor.flagConfirm()
+                            workQueue.append(neighbor)
 
         ## if all mines have been flagged, it implies all the other unexposed slates are safe
         if self.mines == self.cFlagCount + self.pFlagCount + self.mFlagCount:
             for slate in self.slates:
                 if (not slate.exposed) and (slate.flag == 0):
                     slate.flagImpliedSafe()
+                    workQueue.append(slate)
         ## if un-exposed slates count minues those flagged safe, matches Canvas mines count
         ## it implies are remaining un-exposed un-flagged slates are mined
         if self.width * self.height - self.discovery - self.sFlagCount == self.mines:
             for slate in self.slates:
                 if (not slate.exposed) and (slate.flag == 0):
                     slate.flagImpliedMine()
+                    workQueue.append(slate)
 
     def board(self):
+        ## This is to dump details of the canvas and slates for progem debugging process
         result  = f"\n{self.__height} rows and {self.__width} columns and {self.mines} mines and {self.tools} tools\n"
         for r in range(self.__height):
             result = result + "["
@@ -287,20 +284,6 @@ class Canvas:
         result = result + f"{self.cFlagCount} flags, {self.discovery} slates exposed, game is "
         result = result + f"{'won' if self.hasWon else ('lost' if self.hasLost else 'on-going')}."
         return result
-
-
-    def wing_board_(self):
-        result  = f"\n{self.__height} rows and {self.__width} columns and {self.mines} mines and {self.tools} tools\n"
-        for r in range(self.__height):
-            result = result + "["
-            for c in range(self.__width):
-                symbol, comment = self.slates[r*self.width+c].slateSymbol
-                result = result + symbol
-            result = result + "]\n"
-        result = result + f"{self.cFlagCount} flags, {self.discovery} slates exposed, game is "
-        result = result + f"{'won' if self.hasWon else ('lost' if self.hasLost else 'on-going')}."
-        return result
-
 
     def __str__(self):
         result = f"{self.__height} rows and {self.__width} columns and {self.mines} mines and {self.tools} tools\n"

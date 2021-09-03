@@ -12,6 +12,7 @@ def game():
     assist = request.json.get('assist')
     game = get_game_type(level, assist)
     game.gen_new_game()
+    print(f"game after gen_new_game is {game} and has data {game.data}")
 
     gameTracker = GameTracker()
     gid = gameTracker.set_grid(game)
@@ -41,7 +42,8 @@ def update_game():
     gid = session['gid']
 
     game = GameTracker().get_grid(gid)
-    print(f"action_type={action_type} cell={cell}, gid={gid} game={game}")
+    print(f"action_type={action_type} cell={cell}, gid={gid}")
+    print(f"game after GameTracker is {game} and has data {game.data}")
 
     if action_type == 'flag':
         return game.toggle_flag(gid, cell)

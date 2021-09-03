@@ -1,5 +1,9 @@
 function UIUpdate() {
   const tileInnerHtml = {
+    'c': '<span class="material-icons material-icons-outlined">flag</span>',
+    'p': '<span class="material-icons material-icons-outlined">help_outline</span>',
+    'm': '<span class="material-icons material-icons-outlined">close</span>',
+    's': '<span class="material-icons material-icons-outlined">done</span>',
     f: '<span class="material-icons material-icons-outlined">flag</span>',
     xf: '<span class="material-icons material-icons-outlined">flag</span>\
     <span class="material-icons material-icons-outlined" style="position:absolute; color:red;">close</span>',
@@ -30,26 +34,19 @@ function UIUpdate() {
         } else if (singleTile === '0') {
           cell.classList.add('open');
           cell.innerText = ' ';
+        } else if (singleTile === '*') {
+          cell.classList.add('open');
+          cell.classList.add('violated');
+          cell.innerHTML = '<span class="material-icons material-icons-outlined">coronavirus</span>';
         } else if (/^\d+$/.test(singleTile)) {
           cell.classList.add('open');
           cell.innerText = singleTile;
-        } else if (singleTile === 'c') {
-          cell.innerHTML = '<span class="material-icons material-icons-outlined">flag</span>';
-        } else if (singleTile === 'p') {
-          cell.innerHTML = '<span class="material-icons material-icons-outlined">help_outline</span>';
-        } else if (singleTile === 'm') {
-          cell.innerHTML = '<span class="material-icons material-icons-outlined">close</span>';
-        } else if (singleTile === 's') {
-          cell.innerHTML = '<span class="material-icons material-icons-outlined">done</span>';
-        } else if (singleTile === '*') {
-          cell.innerHTML = '<span class="material-icons material-icons-outlined">coronavirus</span>';
         } else {
           cell.innerHTML = tileInnerHtml[singleTile];
           cell.classList.remove('open');
         }
       }
-    }
-    );
+    });
   }
 
   function updateNoOfFlag(flag) {
@@ -146,6 +143,7 @@ const minesweeper = (function () {
     updateBoard(player_board);
     updateNoOfFlag(no_of_flags);
     updateGameStatus({ has_won, has_lost });
+    if (has_won || has_lost) {alert(has_won?"You won!":"You've lost!");}
   }
 
   function leftClick({ currentTarget }) {

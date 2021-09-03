@@ -68,11 +68,6 @@ class Slate:
     def exposed(self):
         return self.__exposed
 
-    @exposed.setter
-    def exposed(self, val):
-        if isinstance(val, bool):
-            self.__exposed = val
-
     @property
     def intel(self):
         if self.exposed:
@@ -88,7 +83,7 @@ class Slate:
     @flag.setter
     def flag(self, val):
         if isinstance(val, int) and (val in flag_symbols):
-            if not self.__exposed:
+            if not self.exposed:
                 self.__flag = val
 
     @property
@@ -263,18 +258,17 @@ class Slate:
     ## If player Cracked a mined slate, all slates are checked and the mine if present will go ogg
     def lit(self):
         if self.__mined:
-            self.exposed = True
+            self.__exposed = True
 
     ## For unexposed slates, player can tap to crack it open.  Each cracking tap is handled by this method
     ## the method returns true if a mine has gone off
     def crack(self):
-        exploded = False
         # For slate already exposed, if the neighborhood has confirmed flag count matching the intel,
         # the method will craking open all unexposed slates in the neighborhood that has no confirmed flag.
         # If the confirmed flag has been planted incorrectly, this will cause a hidden mine to go off
         if self.exposed:
+            exploded = False
             if self.flagCIntel == self.intel:
-                changed = False
                 for neighbor in self.neighborhood:
                     if (not neighbor.exposed) and (flag_symbols[neighbor.flag][1] != 'confirmed'):
                         exploded = exploded or neighbor.crack()
@@ -282,17 +276,18 @@ class Slate:
         pass
         # cracking open a Slate with confirmed flag is not allowed
         if flag_symbols[self.flag][1] == 'confirmed':
-            print(f"    slate[{self.__idx}] has confirmed flag, cracking is not allowed")
             return False
         pass
         # if the Slate has a flag, clear it first
         if self.flag != 0:
             self.flagClear()
+        pass
         # now expose this Slate
-        self.exposed = True
-        # if this Slate has a mine, it expldes and game is over
+        self.__exposed = True
+        # if this Slate has a mine, it explodes and game is over
         if self.mined:
             return True
+        pass
         # now that this Slate is exposed, if its intel is = 0, all its neigborhood slates can be cracked open
         if self.intel == 0:
             for neighbor in self.neighborhood:

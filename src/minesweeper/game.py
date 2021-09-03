@@ -6,28 +6,18 @@ from .Canvas import Canvas
 
 
 def get_game_type(level, assistant):
-    Gassist = assistant
-    if assistant == 2:
-        if level == 'beginner':
-            return Beginner2()
-        elif level == 'intermediate':
-            return Intermediate2()
-        if level == 'expert':
-            return Expert2()
-    elif assistant == 1:
-        if level == 'beginner':
-            return Beginner1()
-        elif level == 'intermediate':
-            return Intermediate1()
-        if level == 'expert':
-            return Expert1()
-    else:
-        if level == 'beginner':
-            return Beginner0()
-        elif level == 'intermediate':
-            return Intermediate0()
-        if level == 'expert':
-            return Expert0()
+    myGame = JustGame()
+    myGame.name = level
+    myGame.assistant = assistant
+    if level == 'intermediate':
+        myGame.height = 16
+        myGame.width = 16
+        myGame.initial_mines = 40
+    if level == 'expert':
+        myGame.height = 16
+        myGame.width = 30
+        myGame.initial_mines = 99
+    return myGame
 
 
 class GameTracker():
@@ -126,69 +116,9 @@ class Game(ABC):
         }
 
 
-
-class Beginner0(Game):
+class JustGame(Game):
     name = "beginner"
     height = 9
     width = 9
     initial_mines = 10
     assistant = 0
-
-
-class Intermediate0(Game):
-    name = "intermediate"
-    height = 16
-    width = 16
-    initial_mines = 40
-    assistant = 0
-
-
-class Expert0(Game):
-    name = "expert"
-    height = 16
-    width = 30
-    initial_mines = 99
-    assistant = 0
-
-class Beginner1(Game):
-    name = "beginner"
-    height = 9
-    width = 9
-    initial_mines = 10
-    assistant = 1
-
-class Intermediate1(Game):
-    name = "intermediate"
-    height = 16
-    width = 16
-    initial_mines = 40
-    assistant = 1
-
-class Expert1(Game):
-    name = "expert"
-    height = 16
-    width = 30
-    initial_mines = 99
-    assistant = 1
-
-
-class Beginner2(Game):
-    name = "beginner"
-    height = 9
-    width = 9
-    initial_mines = 10
-    assistant = 2
-
-class Intermediate2(Game):
-    name = "intermediate"
-    height = 16
-    width = 16
-    initial_mines = 40
-    assistant = 2
-
-class Expert2(Game):
-    name = "expert"
-    height = 16
-    width = 30
-    initial_mines = 99
-    assistant = 2
