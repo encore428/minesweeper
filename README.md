@@ -17,6 +17,10 @@ The following will be displayed on screen:
  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
  ```
  
+ Access the game at this [URL](http://127.0.0.1:5000/)
+ 
+ After testing, Press CTRL+C on Anaconda Prompt to terminate the server, exit to terminate the prompt.
+ 
 ## Architecture
 
 **Api**
