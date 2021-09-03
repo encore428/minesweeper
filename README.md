@@ -21,8 +21,6 @@ The following will be displayed on screen:
  
  After testing, Press CTRL+C on Anaconda Prompt to terminate the server, exit to terminate the prompt.
  
-## Architecture
-
 **Api**
 
 Blueprints of the api of the game:
@@ -30,17 +28,16 @@ Blueprints of the api of the game:
 - init game: to start a new game.
 - update game: as initiated by player tapping on a slate, the action and location of the slate is sent to back-end, back-end performs processing, and return a copy of updated canvas which is then rendered on the browser.
 
-**Minesweeper**
 
-### Software architecture
+**Software architecture**
 
 ![software architecture](/software-architecture.jpg)
 
-### External game API
+**External game API**
 
 ![external api](/external-api-design.jpg)
 
-### UML diagram
+**UML diagram**
 
 ![uml diagram](/uml.jpg)
 
@@ -48,7 +45,7 @@ Blueprints of the api of the game:
 
 Blueprints of the pages on frontend. We will store the static and templates here for it to be self-contained as a front-end only folder.
 
-## Resources
+**Resources**
 
 [Use a Flask Blueprint to Architect Your Applications](https://realpython.com/flask-blueprint/)
 
