@@ -3,7 +3,7 @@
 Open an Anaconda Prompt session, perform the following:
 
 ```
-git clone https://github.com/encore428/Python
+git clone https://github.com/encore428/minesweeper
 cd Python/minesweeper
 source venv/Scripts/activate
 flask run
