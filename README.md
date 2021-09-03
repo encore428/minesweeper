@@ -40,7 +40,7 @@ Blueprints of the api of the game:
 </tr>
 <tr><td>/game</td><td>POST</td><td>
    {level: string,<br>
-   &nbspassist:string<br>
+   &nbspassist: string<br>
    }</td>
    <td rowspan=2>
       {grid:[],<br>
@@ -54,7 +54,7 @@ Blueprints of the api of the game:
       &nbsphasLost: bool<br>
       }</td><td>game.gen_new_game()</td>
 </tr>
-<tr><td>/update</td><td>POST</td><td>{x: int,<br>&nbspy:int,<br>&nbspaction_type:string<br>}</td>
+<tr><td>/update</td><td>POST</td><td>{cell: int,<br>&nbspaction_type:string<br>}</td>
    <td>if action_type == 'flag':<br>
       &nbsp&nbsp&nbsp&nbspgame.toggle_flag(gid, cell)<br>else:<br>&nbsp&nbsp&nbsp&nbspgame.open(gid, cell)
    </td>
