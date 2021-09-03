@@ -36,10 +36,6 @@ Blueprints of the api of the game:
 
 ![software architecture](/software-architecture.jpg)
 
-### User flow
-
-![user flow](/user-flow.jpg)
-
 ### External game API
 
 ![external api](/external-api-design.jpg)
