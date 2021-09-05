@@ -1,6 +1,6 @@
 ## AWS EC2 deployment at http://3.138.183.213:8000/
 
-The app has been deployed onto AWS. Check and see if it is still there.
+The app has been deployed onto AWS. Check and see if it is still there.  This has been done with the help of https://www.twilio.com/blog/deploy-flask-python-app-aws.
 
 ## To execute (on Windows)
 
