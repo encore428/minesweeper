@@ -1,3 +1,7 @@
+## AWS EC2 deployment at http://3.138.183.213:8000/
+
+The app has been deployed onto AWS. Check and see if it is still there.
+
 ## To execute (on Windows)
 
 Open an Anaconda Prompt session, perform the following:
