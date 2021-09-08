@@ -138,6 +138,8 @@ class Slate:
         self.__mined = False    # True if slate has a mine
         self.__exposed = False  # True if slate has been uncovered
         self.__intel = 0  # number of mines in the neighborhood
+        self.__neighborhood = []  # points to neighborhood Slates
+
 ```
  To find out the intelligence of, or determine if a slate is minded, one must go through the property methods:
 ```python
@@ -173,6 +175,14 @@ Another mechanism that prevents the location of mined slates from being known to
 when a request is made from Canvas to plant a mine on a designated slate, the Slate method will perform random 
 walks in the neighborhood network to arrive at another slate to actually plant the mine.
 ```python
+
+    def addNeighbor(self, another_slate):
+        self.__neighborhood.append(another_slate)
+
+    @property
+    def neighborhood(self):
+        return self.__neighborhood
+
     def plant_mine(self, cap):
         sub_neighbor_steps = random.randint(0,int(math.sqrt(cap))) + 3
         curSlate = self
