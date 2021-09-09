@@ -209,6 +209,7 @@ Note that the neighbor notified of addition of mines in its neighborhood, does n
 is informing it.
 
 **Documentation**
+
 Beside using intuitive class, attribute/property, and method names, the code also contain in-line documentation whenever
 around important or non-apparant program logics.
 
