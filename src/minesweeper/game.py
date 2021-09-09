@@ -52,7 +52,7 @@ class Game(ABC):
         self.reset()
 
     def reset(self):
-        seed = 100 ## for test use fixed seed, change to none on roll out
+        seed = None ## for test use fixed seed, change to none on roll out
         self._canvas = Canvas(self.width, self.height, self.initial_mines, self.assistant, seed)
         self._discovered_mines =  self._canvas.discovery
         self._no_of_remaining_tiles = self.width * self.height - self.initial_mines
