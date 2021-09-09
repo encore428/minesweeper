@@ -140,11 +140,16 @@ planting is completed.
 - **neighborhood**: this is a list of other slates that forms the neighborhood of the slate.  All analisys are based on
 neighborhood.  No index are involved, and a slate does not need to know its position on the Canvas to perform such analysis.
 
+Object Orientated paradigm is adopted by having attributes and methods implemented to where each belong, and the two classes
+are carefully isolated.
+
 **How to verify the authenticity of the Intelligent playing mode**
 
 When the game is played, intelligent mode helps to identify mines, and automactically flags and opens appropriate slates.  
 How can one be sure that this is indeed the result of correct algorithm and analysis, and not intentional or accidental
 cheating?
+
+**Hiding of critical Slate attributes**
 
 To ascertain that the program logic that automates the playing of the game relies only on the same info as a player does,
 the `__private` attribute technique is used for the the critical attributes of the Slate class:
@@ -194,6 +199,10 @@ This is the only place `__exposed` is set to True, and it causes the game to be 
 Finally, by inspecting the proper access to `__mined` and `__intel` within the Slate class, one can be assured that 
 any analysis are based on valid known facts form the Canvas.
 
+**Hiding of Slate and Mine Positions**
+
+Slates do not know it's exact positon on the Canvas.  To perform analysis, each relies on the intel from its neighborhood.
+
 Another mechanism that prevents the location of mined slates from being known to outside of Slate class is that, 
 when a request is made from Canvas to plant a mine on a designated slate, the Slate method will perform random 
 walks in the neighborhood network to arrive at another slate to actually plant the mine.
@@ -212,10 +221,120 @@ walks in the neighborhood network to arrive at another slate to actually plant t
 Note that the neighbor notified of addition of mines in its neighborhood, does not know which of its neighbors actually 
 is informing it.
 
-**Documentation**
+## Use of Graph Based algorithms
+
+**Recursion to implement propagaton**
+
+When a Slate is cracked open, and if it has no mine, it reveals its intel.  The pogram analyse the intel, and may 
+proceed to crack open some of its neighborhood Slates.  This process can propagate. 
+
+```python
+    ## For unexposed slates, player can tap to crack it open.  Each cracking tap is handled by this method
+    ## the method returns true if a mine has gone off
+    def crack(self):
+	    ...
+        # now expose this Slate
+        self.__exposed = True
+        # if this Slate has a mine, it explodes and game is over
+        if self.mined:
+            return True
+        pass
+        # now that this Slate is exposed, if its intel is = 0, all its neigborhood slates can be cracked open
+        if self.intel == 0:
+            for neighbor in self.neighborhood:
+                if not neighbor.exposed:
+                    print(f"    Crack slate[{neighbor.__idx}] because slate[{self.__idx}]intel=0")
+                    neighbor.crack()
+        # That's all for opening the Slate
+        if self.tools != 2:
+            return False
+        pass
+        ### The following is for games in Auto mode
+        # Check if neighborhood unexposed Slates count matches Intel, and
+        # flag all exposed slate with Confirm flag
+        self.seek2Confirm()
+        # For each Slate in the neighborhood
+        # Check if its neighborhood unexposed Slates count matches Intel, and
+        # flag all exposed slate with Confirm flag
+        for neighbor in self.neighborhood:
+            neighbor.seek2Confirm()
+        # Check if neighborhood Confirmed flag count matches Intel,
+        # and crack open all unflagged slates
+        if (self.intel > 0) and (self.intel == self.flagCIntel):
+            for neighbor in self.neighborhood:
+                if (not neighbor.exposed) and (flag_symbols[neighbor.flag][1] != 'confirmed'):
+                    print(f"    Crack neighbor slate[{neighbor.__idx}] because slate[{self.__idx}] flag count = Intel")
+                    neighbor.crack()
+        # Repeat for each neighborhood Slate
+        for neighbor in self.neighborhood:
+            if (neighbor.exposed) and (neighbor.intel > 0) and (neighbor.intel == neighbor.flagCIntel):
+                for sub_neighbor in neighbor.neighborhood:
+                    if (not sub_neighbor.exposed) and (flag_symbols[sub_neighbor.flag][1] != 'confirmed'):
+                        print(f"    Crack sub-neighborSlate[{sub_neighbor.__idx}] of slate[{neighbor.__idx}] with flag count = intel")
+                        sub_neighbor.crack()
+        return False
+```
+
+**BFS to implement What-if Analysis**
+
+When the player plants a Proposed flag, the program will analyse the Slates, and when sufficient assumption is made, it
+will proceed to plant Implied flags.  Such flags will require further analysis.  So these flags are added to a queue
+as and when they are planted, so that they can be analysed subsequenly.  As the program analyses all the neighbors of
+a Slate before proceeding to take out another Slate from the queue, this is a BFS search.
+
+```python
+    def reAnalysis(self, triggerSlate):
+        workQueue = self.__queueProposed.copy()
+        if triggerSlate != None and triggerSlate.flag == 1:
+            workQueue.insert(0,triggerSlate)
+        ## perform the analysis for each slate in queue
+        workQueue = self.__queueProposed.copy()
+        while len(workQueue) > 0:
+            thisSlate = workQueue.pop(0)
+            print(f"         analysing exposed neighborhood of slate[{thisSlate.idx}] for implied mines")
+            ## From this queue which starts with slates with proposed flags, derive implied flags.
+            ## As Implied flags are planted, each slate with new flag is added to the queue for similar analysis.
+            ## This goes on until the queue is cleared.
+            for neighbor in thisSlate.neighborhood:
+                # print(f"        analysis of mines for neignbor slate[{neighbor.idx}]")
+                # check Intel of its exposed neighbors, if it's intel matches un-exposed slates in its neighborhood,
+                # plant implied mine flags.
+                if neighbor.exposed and (neighbor.intel == neighbor.unexposedIntel - neighbor.flagSIntel):
+                    print(f"             analysing un-exposed sub_neighborhood of neighborSlate[{neighbor.idx}]")
+                    for sub_neighbor in neighbor.neighborhood:
+                        # print(f"            analysis of sub-neignbor slate[{sub_neighbor.idx}]")
+                        if not sub_neighbor.exposed and (sub_neighbor.flag == 0):
+                            print(f"                 sub_neighborSlate[{sub_neighbor.idx}] has implid mine")
+                            sub_neighbor.flagImpliedMine()
+                            workQueue.append(sub_neighbor)
+            print(f"         analysing exposed neighborhood of slate[{thisSlate.idx}] for implied safe slates")
+            for neighbor in thisSlate.neighborhood:
+                # print(f"        analysis of safe for neignbor slate[{neighbor.idx}] having {neighbor.exposed} {neighbor.intel} {neighbor.flagCIntel+neighbor.flagPIntel+neighbor.flagMIntel}")
+                # check Intel of my exposed neighbors, if its intel matches flag count,
+                # plant implied safe flags to the remaining unexposed neighbors.
+                if neighbor.exposed and (
+                        neighbor.intel == neighbor.flagCIntel + neighbor.flagPIntel + neighbor.flagMIntel):
+                    print(f"             analysing un-exposed sub_neighborhood of neighborSlate[{neighbor.idx}]")
+                    for sub_neighbor in neighbor.neighborhood:
+                        # print(f"            analysis of sub-neignbor slate[{sub_neighbor.idx}]")
+                        if (not sub_neighbor.exposed) and (sub_neighbor.flag == 0):
+                            print(f"                 sub_neighborSlate[{sub_neighbor.idx}] implid safe")
+                            sub_neighbor.flagImpliedSafe()
+                            workQueue.append(sub_neighbor)
+```
+
+## Documentation
 
 Beside using intuitive class, attribute/property, and method names, the code also contain in-line documentation whenever
 around important or non-apparant program logics.
+
+There are in-program comments to explain key segments of program logic.
+
+The idx attribute is used for each Slate. This attibute is for printing tracing statements for debugging purpose only.
+The index is not used otherwise.
+
+The tracing statements clearly denote what the analyis it is performing.
+
 
 **Api**
 
