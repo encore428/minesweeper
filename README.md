@@ -105,12 +105,12 @@ selected game assistant mode.
 
 **Intelligent assistant**
 
-With intelligent assistant, the computer identifies and plants **Confirmed flags** all the slates that, deduced from the exposed intelligence,
-are certain to have mines.
+With intelligent assistant, the computer identifies and plants **Confirmed flags** on all Slates that, deduced from the exposed 
+intelligence, are certain to have mines.
 
 The player plants only **Proposed flags**, which is equivalent to asking the question "what if these 
 slates have mines."  The computer will then identify slates that must have been mined or safe, and will plant 
-**Implied flags** accordingly.  From these flags, the computer further recomputes the implied **intellicence**, 
+**Implied flags** accordingly.  From these flags, the computer further recomputes the implied **intelligence**, 
 checks that against the exposed **intelligence**, and high-light any **intelligence** that are violated.  
 When intelligence are violated, it means the **Proposed flags** are incorrect.  If the violation is caused by a 
 single **Proposed flag**, the player can proceed to left-click to open the slate with the **Proposed flag**.
@@ -137,6 +137,8 @@ the player loses.
 - **intel**: as mines are planted on selected slates, the mined slate informs its neighbor that it has a bomb.  Each slate 
 keeps track of the number of times it is informed, and this is the intel of the slate.  This number is fixed once the mines 
 planting is completed.
+- **neighborhood**: this is a list of other slates that forms the neighborhood of the slate.  All analisys are based on
+neighborhood.  No index are involved, and a slate does not need to know its position on the Canvas to perform such analysis.
 
 **How to verify the authenticity of the Intelligent playing mode**
 
@@ -210,15 +212,11 @@ walks in the neighborhood network to arrive at another slate to actually plant t
 Note that the neighbor notified of addition of mines in its neighborhood, does not know which of its neighbors actually 
 is informing it.
 
-<<<<<<< HEAD
 **Documentation**
 
 Beside using intuitive class, attribute/property, and method names, the code also contain in-line documentation whenever
 around important or non-apparant program logics.
 
-=======
- 
->>>>>>> parent of 853821a (Update README.md)
 **Api**
 
 Blueprints of the api of the game:
