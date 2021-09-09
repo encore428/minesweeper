@@ -223,7 +223,7 @@ is informing it.
 
 ## Use of Graph Based algorithms
 
-**Recursion to implement propagaton**
+**Recursion to implement propagation**
 
 When a Slate is cracked open, and if it has no mine, it reveals its intel.  The pogram analyse the intel, and may 
 proceed to crack open some of its neighborhood Slates.  This process can propagate. 
@@ -325,15 +325,23 @@ a Slate before proceeding to take out another Slate from the queue, this is a BF
 
 ## Documentation
 
-Beside using intuitive class, attribute/property, and method names, the code also contain in-line documentation whenever
-around important or non-apparant program logics.
+Program code uses intuitive class, attribute/property, and method names.
 
 There are in-program comments to explain key segments of program logic.
 
-The idx attribute is used for each Slate. This attibute is for printing tracing statements for debugging purpose only.
-The index is not used otherwise.
+The idx attribute for each Slate is for printing tracing statements for debugging purpose only.  The index is not used otherwise.
 
-The tracing statements clearly denote what the analyis it is performing.
+The tracing print statements clearly denote what the analyis it is performing.  Those statement can be used to annimate the progress of the 
+slate analysis, flag planting, and slate opening process if interface to front-end.
+
+## Further enhancement
+
+Program can be further enhanced to perform iterative what-if analysis to open safely more slates.
+
+Beyond logical analysis that returns results with certainty, the program can also be enhanced to, when there is no clue to open further slates,
+compute the possibilty of each un-exposed slate, and to pick the one with the lowest probability to open.
+
+Eventually, the human player can be eliminated.
 
 
 **Api**
