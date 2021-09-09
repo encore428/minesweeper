@@ -1,6 +1,8 @@
 **This app has been deployed to AWS at the folowing URL**
 http://18.220.32.206:5000/
 
+I referred to this for creating EC2 instances and using Cloud9 in AWS: https://hackmd.io/@Crimsonlycans/rkhvAZHZY.
+I referred to this for tips on AWS deployment https://www.twilio.com/blog/deploy-flask-python-app-aws.
 These are the commands used to deploy:
 ```ssh
 sudo apt update
