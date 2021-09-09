@@ -1,3 +1,19 @@
+**This app has been deployed to AWS at the folowing URL**
+http://18.220.32.206:5000/
+
+These are the commands used to deploy:
+```ssh
+sudo apt update
+sudo apt install python3 python3-pip tmux htop
+git clone
+cd minesweeper
+tmux new -s minesweeper
+cd minesweeper
+pip3 install -r requirements.txt
+sudo apt install python3-flask
+flask run --host=0.0.0.0 --port=5000
+```
+
 ## To execute (on Windows)
 
 Open an Anaconda Prompt session, perform the following:
