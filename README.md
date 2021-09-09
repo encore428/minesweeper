@@ -331,15 +331,15 @@ There are in-program comments to explain key segments of program logic.
 
 The idx attribute for each Slate is for printing tracing statements for debugging purpose only.  The index is not used otherwise.
 
-The tracing print statements clearly denote what the analyis it is performing.  Those statement can be used to annimate the progress of the 
-slate analysis, flag planting, and slate opening process if interface to front-end.
+The tracing print statements clearly denote what the analyis it is performing.  Those output can be used to animate the progress of the 
+analysis, flag planting, and slate opening process if interface to front-end.
 
 ## Further enhancement
 
-Program can be further enhanced to perform iterative what-if analysis to open safely more slates.
+Program can be further enhanced to perform iterative what-if analysis to safely open more slates.
 
-Beyond logical analysis that returns results with certainty, the program can also be enhanced to, when there is no clue to open further slates,
-compute the possibilty of each un-exposed slate, and to pick the one with the lowest probability to open.
+Beyond logical analysis that returns results with certainty, the program can also be enhanced to, when there is no clue to flag or open further slates,
+compute the possibilty of having mine for each un-exposed slate, and to pick the one with the lowest probability to open.
 
 Eventually, the human player can be eliminated.
 
