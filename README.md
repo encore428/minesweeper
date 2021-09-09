@@ -210,11 +210,15 @@ walks in the neighborhood network to arrive at another slate to actually plant t
 Note that the neighbor notified of addition of mines in its neighborhood, does not know which of its neighbors actually 
 is informing it.
 
+<<<<<<< HEAD
 **Documentation**
 
 Beside using intuitive class, attribute/property, and method names, the code also contain in-line documentation whenever
 around important or non-apparant program logics.
 
+=======
+ 
+>>>>>>> parent of 853821a (Update README.md)
 **Api**
 
 Blueprints of the api of the game:
