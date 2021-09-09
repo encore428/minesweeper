@@ -150,6 +150,8 @@ class Slate:
         self.__mined = False    # True if slate has a mine
         self.__exposed = False  # True if slate has been uncovered
         self.__intel = 0  # number of mines in the neighborhood
+        self.__neighborhood = []  # points to neighborhood Slates
+
 ```
  To find out the intelligence of, or determine if a slate is minded, one must go through the property methods:
 ```python
@@ -162,6 +164,13 @@ class Slate:
     def intel(self):
         if self.exposed:
             return self.__intel
+
+    def addNeighbor(self, another_slate):
+        self.__neighborhood.append(another_slate)
+
+    @property
+    def neighborhood(self):
+        return self.__neighborhood
 ```
 Here, the value is returned only if the slate is exposed.  As such, no one from outside of Slate class can obtained the 
 value without first opening the slate.  To open a slate, one can only do it via the Slate method crack():
@@ -199,7 +208,10 @@ walks in the neighborhood network to arrive at another slate to actually plant t
 Note that the neighbor notified of addition of mines in its neighborhood, does not know which of its neighbors actually 
 is informing it.
 
- 
+**Documentation**
+Beside using intuitive class, attribute/property, and method names, the code also contain in-line documentation whenever
+around important or non-apparant program logics.
+
 **Api**
 
 Blueprints of the api of the game:
