@@ -5,7 +5,7 @@ These are the commands used to deploy:
 ```ssh
 sudo apt update
 sudo apt install python3 python3-pip tmux htop
-git clone
+git clone https://github.com/encore428/minesweeper
 cd minesweeper
 tmux new -s minesweeper
 cd minesweeper
