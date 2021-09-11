@@ -16,6 +16,16 @@ sudo apt install python3-flask
 flask run --host=0.0.0.0 --port=5000
 ```
 
+
+The following will be displayed on screen:
+```
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+ ```
+
 ## To execute (on Windows)
 
 Open an Anaconda Prompt session, perform the following:
@@ -25,6 +35,7 @@ git clone https://github.com/encore428/minesweeper
 cd minesweeper
 python -m venv virtenv
 virtenv\Scripts\activate
+pip install -U --force-reinstall -r requirements.txt
 flask run
 ```
 
